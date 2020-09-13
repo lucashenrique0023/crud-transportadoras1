@@ -11,6 +11,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import br.com.lucaslab.transportadoras.infrastructure.web.validator.UploadConstraint;
+import br.com.lucaslab.transportadoras.util.FileType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,6 +57,9 @@ public class Empresa implements Serializable {
 	private Integer cep;
 	
 	@NotNull
+	private String estado;
+	
+	@NotNull
 	@Size(max = 50)
 	private String cidade;
 	
@@ -68,5 +75,19 @@ public class Empresa implements Serializable {
 	@Min(0)
 	@Max(999)
 	private Integer numero;
+	
+	@Size(max = 80)
+	private String logotipo;
+	
+	@UploadConstraint(acceptedTypes = { FileType.PNG, FileType.JPG }, message = "O arquivo nao e uma imagem valida.")
+	private transient MultipartFile logotipoFile;
+	
+	public void setLogoTipoFileName() {
+		if (getId() == null) {
+			throw new IllegalStateException("E preciso primeiro gravar o registro");
+		}
+		
+		this.logotipo = String.format("%04d-logotipo.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
+	}
 
 }

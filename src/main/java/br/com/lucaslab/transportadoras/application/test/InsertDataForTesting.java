@@ -28,10 +28,12 @@ public class InsertDataForTesting {
 		t.setCelular("82885869685");
 		t.setWhatsapp("38478374857");
 		t.setCep(45434568);
+		t.setEstado("PE");
 		t.setCidade("Recife");
 		t.setBairro("Imbiribeira");	
 		t.setRua("Rua Imbiribeira");
 		t.setNumero(347);
+		t.setLogotipo("0001-logotipo.png");
 		t.setModal(Modal.Aereo);
 		
 		transportadoraRepository.save(t);
@@ -44,6 +46,8 @@ public class InsertDataForTesting {
 		t.setCelular("82885555685");
 		t.setWhatsapp("38475554857");
 		t.setCep(3454567);
+		t.setEstado("SP");
+		t.setLogotipo("0002-logotipo.png");
 		t.setCidade("Sao Paulo");
 		t.setBairro("Sao Paulo");	
 		t.setRua("Rua Florenca");
@@ -60,6 +64,8 @@ public class InsertDataForTesting {
 		t.setCelular("82885666685");
 		t.setWhatsapp("38476664857");
 		t.setCep(45345675);
+		t.setEstado("PE");
+		t.setLogotipo("0003-logotipo.png");
 		t.setCidade("Recife");
 		t.setBairro("Boa Vista");	
 		t.setRua("Rua Boa Vista");
@@ -76,6 +82,8 @@ public class InsertDataForTesting {
 		t.setCelular("82883426685");
 		t.setWhatsapp("38422164857");
 		t.setCep(34565678);
+		t.setEstado("CE");
+		t.setLogotipo("0004-logotipo.png");
 		t.setCidade("Fortaleza");
 		t.setBairro("Fortaleza");	
 		t.setRua("Rua Osvaldo Cruz");
@@ -92,6 +100,8 @@ public class InsertDataForTesting {
 		t.setCelular("8285436685");
 		t.setWhatsapp("3844564857");
 		t.setCep(34565678);
+		t.setEstado("BA");
+		t.setLogotipo("0005-logotipo.png");
 		t.setCidade("Bahia");
 		t.setBairro("Vila Carneiro");	
 		t.setRua("Rua Biongo");

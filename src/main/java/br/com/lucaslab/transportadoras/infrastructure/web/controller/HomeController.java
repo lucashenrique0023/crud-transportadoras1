@@ -1,4 +1,4 @@
-package br.com.lucaslab.transportadoras.infrastructure.web;
+package br.com.lucaslab.transportadoras.infrastructure.web.controller;
 
 import java.util.List;
 

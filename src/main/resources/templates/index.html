@@ -23,7 +23,7 @@
 					<!--button type="button" class="btn btn-success btn-sm">Cadastre
 						sua transportadora</button  -->
 						
-					<input type="button" class="btn btn-success btn-sm" value="Cadastre sua Transportadora" th:onclick="'location.href=\'' + @{/cadastro} + '\';'">
+					<input type="button" class="btn btn-success btn-sm" value="Cadastre sua Transportadora" th:onclick="'location.href=\'' + @{/public/transportadora/new} + '\';'">
 				</div>
 			</div>
 		</div>
@@ -84,7 +84,7 @@
 					<tbody>
 						<tr th:each="transportadora : ${transportadoras}">
 							<th scope="row"><a href="#"> <img
-									th:src=@{/images/logotipo1.png} alt="Empresa 1" width="50"
+									th:src="@{/images/logotipo/} + ${transportadora.logotipo}" th:alt="${transportadora.nome}" width="50"
 									height="50" style="float: left" />
 							</a></th>
 							<td>
