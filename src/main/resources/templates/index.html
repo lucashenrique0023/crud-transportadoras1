@@ -2,9 +2,111 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/estilos.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Hello Spring!</h1>
+	<div class="container"
+		style="padding-top: 30px; padding-bottom: 30px; border-bottom: 1px solid black;">
+		<div class="row">
+			<div class="col">
+				<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Transportadoras</span>
+					</div>
+					<input type="text" class="form-control"
+						aria-label="Transportadoras"
+						aria-describedby="inputGroup-sizing-sm">
+					<!--button type="button" class="btn btn-success btn-sm">Cadastre
+						sua transportadora</button  -->
+						
+					<input type="button" class="btn btn-success btn-sm" value="Cadastre sua Transportadora" th:onclick="'location.href=\'' + @{/cadastro} + '\';'">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<h3>Transportadoras</h3>
+				<span>1234 resultados</span>
+				<div>
+					<button type="button" class="btn btn-primary btn-sm">BRASSPRESS</button>
+					<button type="button" class="btn btn-primary btn-sm">PE</button>
+					<button type="button" class="btn btn-primary btn-sm">Recife</button>
+				</div>
+				<br />
+				<div>
+					<label for="nome">Nome</label> <input type="text" id="nome" /> <br />
+					<br />
+					<h5>
+						Localizacao (UFs)
+						</h3>
+						<ul style="list-style-type: none;">
+							<li><a href="#"><span>Sao Paulo(115)</span></a><br /></li>
+							<li><a href="#"><span>Rio de Janeiro(112)</span></a><br /></li>
+							<li><a href="#"><span>Pernambuco(110)</span></a><br /></li>
+							<li><a href="#"><span>Ceara(106)</span></a><br /></li>
+							<li><a href="#"><span>Parana(106)</span></a><br /></li>
+							<li><a href="#"><span>Mato Grosso(104)</span></a><br /></li>
+						</ul>
+
+						<br /> <br />
+						<h5>
+							Localizacao (Municipios)
+							</h3>
+							<ul style="list-style-type: none;">
+								<li><a href="#"><span>Sao Paulo(115)</span></a><br /></li>
+								<li><a href="#"><span>Rio de Janeiro(112)</span></a><br /></li>
+								<li><a href="#"><span>Pernambuco(110)</span></a><br /></li>
+								<li><a href="#"><span>Ceara(106)</span></a><br /></li>
+								<li><a href="#"><span>Parana(106)</span></a><br /></li>
+								<li><a href="#"><span>Mato Grosso(104)</span></a><br /></li>
+							</ul>
+
+							<br /> <br />
+							<h5>
+								Modal
+								</h3>
+								<ul style="list-style-type: none;">
+									<li><a href="#"><span>Rodoviario(115)</span></a><br /></li>
+									<li><a href="#"><span>Aereo(112)</span></a><br /></li>
+									<li><a href="#"><span>Aquaviario(110)</span></a><br /></li>
+								</ul>
+				</div>
+
+			</div>
+			<div class="col-8">
+				<table class="gfg">
+					<tbody>
+						<tr th:each="transportadora : ${transportadoras}">
+							<th scope="row"><a href="#"> <img
+									th:src=@{/images/logotipo1.png} alt="Empresa 1" width="50"
+									height="50" style="float: left" />
+							</a></th>
+							<td>
+							<a href="#"><span th:text="${transportadora.nome}"></span></a>
+							<br/>
+							<span th:text="${transportadora.empresa}"></span>
+							</td>
+							<td>
+								<span th:text="${transportadora.telefone}"></span> 
+								<span th:text="${transportadora.celular}"></span> 
+								<br/>
+								<span th:text="${transportadora.email}"></span>
+							</td>
+							<td id="closeborder">
+								<span th:text="'Fale Agora: ' + ${transportadora.whatsapp}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

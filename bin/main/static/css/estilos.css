@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+
+tr {
+  border: 1px solid black;
+}
+
+table 
+{ 
+	border-collapse: collapse;
+} 
+
+.gfg 
+{ 
+	border-collapse:separate; 
+	border-spacing:0 15px; 
+} 
+
+td {
+	width:850px; 
+}
+
+th, td { 
+    text-align:left; 
+    border-top:3px solid black; 
+    border-bottom:3px solid black; 
+    padding:5px 
+  
+}
+
+th {
+	border-left: 3px solid black;
+}
+
+#closeborder
+{
+	border-right: 3px solid black;
+}
+
+.formsize
+{
+	width: 50%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
