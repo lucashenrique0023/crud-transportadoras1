@@ -22,6 +22,7 @@ public class PublicController {
 	public String newTransportadora(Model model) {
 		
 		model.addAttribute("transportadora" , new Transportadora());
+		HelperController.setEditMode(model, false);
 		
 		return "transportadora-cadastro";
 	}
@@ -32,6 +33,7 @@ public class PublicController {
 		
 		transportadoraService.saveTransportadora(transportadora);
 		model.addAttribute("msg", "Transportadora cadastrada com sucesso!");
+		HelperController.setEditMode(model, false);
 		
 		return "transportadora-cadastro";
 	}

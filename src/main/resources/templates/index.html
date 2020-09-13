@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/estilos.css}" rel="stylesheet">
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </head>
 <body>
 	<div class="container"
@@ -83,12 +84,13 @@
 				<table class="gfg">
 					<tbody>
 						<tr th:each="transportadora : ${transportadoras}">
+								<input type="hidden" name="transportadoraId" th:value="${transportadora.id}"/>
 							<th scope="row"><a href="#"> <img
 									th:src="@{/images/logotipo/} + ${transportadora.logotipo}" th:alt="${transportadora.nome}" width="50"
-									height="50" style="float: left" />
+									height="50" style="float: left" th:onclick="'location.href=\'' + @{/transportadora/edit} + '?transportadoraId=' + ${transportadora.id} + '\';'"/>
 							</a></th>
 							<td>
-							<a href="#"><span th:text="${transportadora.nome}"></span></a>
+							<a href="#" th:onclick="'location.href=\'' + @{/transportadora/edit} + '?transportadoraId=' + ${transportadora.id} + '\';'"><span th:text="${transportadora.nome}"></span></a>
 							<br/>
 							<span th:text="${transportadora.empresa}"></span>
 							</td>
@@ -101,7 +103,7 @@
 							<td id="closeborder">
 								<span th:text="'Fale Agora: ' + ${transportadora.whatsapp}"></span>
 							</td>
-						</tr>
+						</tr>	
 					</tbody>
 				</table>
 			</div>

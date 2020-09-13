@@ -8,8 +8,15 @@
 </head>
 <body>
 
+<div id="menssagemDeSucesso" th:if="${msg != null}">
+	<span th:text="${msg}"></span>
+</div>
+
 <div class="container formsize">
-	<form method="post" th:object="${transportadora}" th:action="@{/public/transportadora/save}" enctype="multipart/form-data">
+	<form method="post" th:object="${transportadora}" th:action="${!editMode} ? @{/public/transportadora/save} : @{/transportadora/save}" enctype="multipart/form-data">
+	  
+	  <input type="hidden" th:field="*{id}"/>
+	  
 	  <div class="form-group row">
 	    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
 	    <div class="col-sm-10">
@@ -106,13 +113,15 @@
 		  </div>
 		</div>
 	
-		<div class="form-group row">
-		  <label for="exampleFormControlFile1" class="col-sm-2 col-form-label">Logotipo</label>
-		  <div class="col-sm-10">
-		  	<input type="file" name="logotipo" th:field="*{logotipoFile}" class="form-control-file" id="exampleFormControlFile1">
-		  </div>  
+		<div th:if="${!editMode}">
+			<div class="form-group row">
+			  <label for="exampleFormControlFile1" class="col-sm-2 col-form-label">Logotipo</label>
+			  <div class="col-sm-10">
+			  	<input type="file" name="logotipo" th:field="*{logotipoFile}" class="form-control-file" id="exampleFormControlFile1">
+			  </div>  
+			</div>
 		</div>
-	
+		
 		<div class="form-group row text-center">
 		  <div class="col-sm-12 ">
 		    <div class="form-check">
@@ -126,7 +135,7 @@
 	  
 	  <div class="form-group row text-center">
 	    <div class="col-sm-12">
-	      <input type="submit" class="btn btn-primary">Cadastrar-se Agora!</button>
+	      <input type="submit" class="btn btn-primary" th:value="${!editMode} ? 'Cadastrar-se Agora!' : 'Alterar'"></button>
 	    </div>
 	  </div>
 	</form>
