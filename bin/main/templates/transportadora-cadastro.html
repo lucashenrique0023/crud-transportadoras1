@@ -20,49 +20,86 @@
 	  <div class="form-group row">
 	    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
 	    <div class="col-sm-10">
-	      <input type="email" name="email" class="form-control" id="inputEmail" th:field="*{email}">
+	      <input type="email" name="email" class="form-control" id="inputEmail" th:field="*{email}"
+	       th:classappend="${#fields.hasErrors('nome')} ? 'inputError' : ''"/>
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('email')}">
+	  	<span th:errors="*{email}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	    <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="nome" th:field="*{nome}" class="form-control" id="inputNome">
+	      <input type="text" name="nome" th:field="*{nome}" class="form-control"
+	      th:classappend="${#fields.hasErrors('nome')} ? 'inputError' : ''"/>
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('nome')}">
+	  	<span th:errors="*{nome}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	    <label for="inputEmpresa" class="col-sm-2 col-form-label">Empresa</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="empresa" th:field="*{empresa}"  class="form-control" id="inputEmpresa">
+	      <input type="text" name="empresa" th:field="*{empresa}"  class="form-control" id="inputEmpresa"
+	      th:classappend="${#fields.hasErrors('empresa')} ? 'inputError' : ''" />
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('empresa')}">
+	  	<span th:errors="*{empresa}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	    <label for="inputTelefone" class="col-sm-2 col-form-label">Telefone</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="telefone" th:field="*{telefone}" class="form-control" id="inputTelefone">
+	      <input type="text" name="telefone" th:field="*{telefone}" class="form-control" id="inputTelefone"
+	      th:classappend="${#fields.hasErrors('telefone')} ? 'inputError' : ''" />
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('telefone')}">
+	  	<span th:errors="*{telefone}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	    <label for="inputCelular" class="col-sm-2 col-form-label">Celular</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="celular" th:field="*{celular}" class="form-control" id="inputCelular">
+	      <input type="text" name="celular" th:field="*{celular}" class="form-control" id="inputCelular"
+	      th:classappend="${#fields.hasErrors('celular')} ? 'inputError' : ''" />
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('celular')}">
+	  	<span th:errors="*{celular}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	    <label for="inputWhatsapp" class="col-sm-2 col-form-label">Whatsapp</label>
 	    <div class="col-sm-10">
-	      <input type="text" name="whatsapp" th:field="*{whatsapp}" class="form-control" id="inputWhatsapp">
+	      <input type="text" name="whatsapp" th:field="*{whatsapp}" class="form-control" id="inputWhatsapp"
+	      th:classappend="${#fields.hasErrors('whatsapp')} ? 'inputError' : ''"/>
 	    </div>
 	  </div>
+	  
+	  <div id="mensagemDeErro" th:if="${#fields.hasErrors('whatsapp')}">
+	  	<span th:errors="*{whatsapp}"></span>
+	  </div>
+	  <br/>
 	  
 	  <div class="form-group row">
 	      <label for="inputModal" class="col-sm-2 col-form-label">Modal</label>
 	      <div class="col-sm-10">
-		      <select id="inputModal" name="modal" th:field="*{modal}" class="form-control">
+		      <select id="inputModal" name="modal" th:field="*{modal}" class="form-control" 
+		      th:classappend="${#fields.hasErrors('estado')} ? 'inputError' : ''"/>
 		        <option selected th:value="Rodoviario" th:text="Rodoviario"></option>
 		        <option th:value="Aquaviario" th:text="Aquaviario"></option>
 		        <option th:value="Aereo" th:text="Aereo"></option>
@@ -73,11 +110,14 @@
 		<div class="form-group row">
 			<label for="inputCep" class="col-sm-2 col-form-label">Cep</label>
 			<div class="col-sm-5">
-			  <input type="text" name="cep" th:field="*{cep}" class="form-control" id="inputCep">
+			  <input type="text" name="cep" th:field="*{cep}" class="form-control" id="inputCep"
+			  th:classappend="${#fields.hasErrors('whatsapp')} ? 'inputError' : ''"/>
 			</div>
+		    
 			<label for="inputState" class="col-sm-2 col-form-label">Estado</label>
 			<div class="col-sm-3">
-			 <select id="inputState" name="estado" th:field="*{estado}" class="form-control">
+			 <select id="inputState" name="estado" th:field="*{estado}" class="form-control" 
+			 th:classappend="${#fields.hasErrors('estado')} ? 'inputError' : ''" />
 			   <option selected th:value="PE" th:text="PE"></option>
 			   <option th:value="PB" th:text="PB"></option>
 			   <option th:value="MG" th:text="MG"></option>
@@ -85,42 +125,82 @@
 			</div>
 	  	</div>
 	  	
+	  	<div id="mensagemDeErro" th:if="${#fields.hasErrors('cep')}">
+		  		<span th:errors="*{cep}"></span>
+		</div>
+		<br/>
+	  	
 		<div class="form-group row">
 		  <label for="inputCidade" class="col-sm-2 col-form-label">Cidade</label>
 		  <div class="col-sm-10">
-		    <input type="text" name="cidade" th:field="*{cidade}" class="form-control" id="inputCidade">
+		    <input type="text" name="cidade" th:field="*{cidade}" class="form-control" id="inputCidade" 
+		    th:classappend="${#fields.hasErrors('cidade')} ? 'inputError' : ''"/>
 		  </div>
 		</div>
+		
+		<div id="mensagemDeErro" th:if="${#fields.hasErrors('cidade')}">
+		  		<span th:errors="*{cidade}"></span>
+		</div>
+		<br/>
 		
 		<div class="form-group row">
 		  <label for="inputBairro" class="col-sm-2 col-form-label">Bairro</label>
 		  <div class="col-sm-10">
-		    <input type="text" name="bairro" th:field="*{bairro}" class="form-control" id="inputBairro">
+		    <input type="text" name="bairro" th:field="*{bairro}" class="form-control" id="inputBairro" 
+		    th:classappend="${#fields.hasErrors('bairro')} ? 'inputError' : ''">
 		  </div>
 		</div>
+		
+		<div id="mensagemDeErro" th:if="${#fields.hasErrors('bairro')}">
+		  		<span th:errors="*{bairro}"></span>
+		</div>
+		<br/>
 		
 		<div class="form-group row">
 		  <label for="inputRua" class="col-sm-2 col-form-label">Rua / Avenida</label>
 		  <div class="col-sm-10">
-		    <input type="text" name="rua" th:field="*{rua}" class="form-control" id="inputRua">
+		    <input type="text" name="rua" th:field="*{rua}" class="form-control" id="inputRua" 
+		    th:classappend="${#fields.hasErrors('rua')} ? 'inputError' : ''">
 		  </div>
 		</div>
+		
+		<div id="mensagemDeErro" th:if="${#fields.hasErrors('rua')}">
+		  		<span th:errors="*{rua}"></span>
+		</div>
+		<br/>
 		
 		<div class="form-group row">
 		  <label for="inputNumero" class="col-sm-2 col-form-label">Numero</label>
 		  <div class="col-sm-10">
-		    <input type="text" name="numero" th:field="*{numero}" class="form-control" id="inputNumero">
+		    <input type="text" name="numero" th:field="*{numero}" class="form-control" id="inputNumero"
+		    th:classappend="${#fields.hasErrors('nome')} ? 'inputError' : ''" />
 		  </div>
 		</div>
+		
+		<div id="mensagemDeErro" th:if="${#fields.hasErrors('numero')}">
+	  		<span th:errors="*{numero}"></span>
+	  	</div>
+		<br/>
+		
+		<div th:if="*{logotipo != null}" class="form-group row justify-content-center">
+			<img th:src="@{/images/logotipo/} + ${transportadora.logotipo}" th:alt="${transportadora.nome}" width="50"
+			height="50" style="float: left" th:onclick="'location.href=\'' + @{/transportadora/edit} + '?transportadoraId=' + ${transportadora.id} + '\';'"/>
+		</div>
 	
-		<div th:if="${!editMode}">
+		<div>
 			<div class="form-group row">
 			  <label for="exampleFormControlFile1" class="col-sm-2 col-form-label">Logotipo</label>
 			  <div class="col-sm-10">
-			  	<input type="file" name="logotipo" th:field="*{logotipoFile}" class="form-control-file" id="exampleFormControlFile1">
+			  	<input type="file" name="logotipo" th:field="*{logotipoFile}" class="form-control-file" id="exampleFormControlFile1"
+			  	 th:classappend="${#fields.hasErrors('logotipoFile')} ? 'inputError' : ''" />
 			  </div>  
 			</div>
 		</div>
+		
+		<div id="mensagemDeErro" th:if="${#fields.hasErrors('logotipoFile')}">
+	  		<span th:errors="*{logotipoFile}"></span>
+	  	</div>
+		<br/>
 		
 		<div class="form-group row text-center">
 		  <div class="col-sm-12 ">

@@ -22,6 +22,7 @@ public class TransportadoraService {
 		if (transportadora.getId() != null) {
 			Transportadora transportadoraDB = transportadoraRepository.findById(transportadora.getId()).orElseThrow();
 			transportadora.setLogotipo(transportadoraDB.getLogotipo());
+			imageService.uploadLogotipo(transportadora.getLogotipoFile(), transportadora.getLogotipo());
 			transportadoraRepository.save(transportadora);
 		} else {
 			transportadora = transportadoraRepository.save(transportadora);

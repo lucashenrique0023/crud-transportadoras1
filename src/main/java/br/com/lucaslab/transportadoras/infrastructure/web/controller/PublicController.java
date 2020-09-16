@@ -1,8 +1,12 @@
 package br.com.lucaslab.transportadoras.infrastructure.web.controller;
 
+import javax.validation.Valid;
+import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,13 +32,21 @@ public class PublicController {
 	}
 	
 	@PostMapping(path = "/transportadora/save")
-	public String saveTransportadora(@ModelAttribute("transportadora") Transportadora transportadora,
+	public String saveTransportadora(@ModelAttribute("transportadora") @Valid Transportadora transportadora,
+			Errors errors,
 			Model model) {
 		
-		transportadoraService.saveTransportadora(transportadora);
-		model.addAttribute("msg", "Transportadora cadastrada com sucesso!");
-		HelperController.setEditMode(model, false);
+		if (!errors.hasErrors()) {
+			try {
+				transportadoraService.saveTransportadora(transportadora);
+				model.addAttribute("msg", "Transportadora cadastrada com sucesso!");
+			} catch (ValidationException ex) {
+				errors.rejectValue("email",  null, ex.getMessage());
+			}
+		}
 		
+		
+		HelperController.setEditMode(model, false);	
 		return "transportadora-cadastro";
 	}
 	

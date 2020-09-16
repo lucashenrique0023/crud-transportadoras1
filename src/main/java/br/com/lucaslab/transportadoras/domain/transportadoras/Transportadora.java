@@ -2,6 +2,7 @@ package br.com.lucaslab.transportadoras.domain.transportadoras;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import br.com.lucaslab.transportadoras.domain.empresa.Empresa;
 import lombok.EqualsAndHashCode;
@@ -15,6 +16,7 @@ import lombok.Setter;
 @Table(name = "transportadora")
 public class Transportadora extends Empresa {
 
+		@NotNull
 		private Modal modal;
 
 }
