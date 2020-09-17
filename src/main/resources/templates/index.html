@@ -32,6 +32,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-4">
+			<form method="get" th:object="${transportadoraFilter}" th:action="@{/home}" id="formFilter">
 				<h3>Transportadoras</h3>
 				<span>1234 resultados</span>
 				<div>
@@ -41,31 +42,35 @@
 				</div>
 				<br />
 				<div>
-					<label for="nome">Nome</label> <input type="text" id="nome" /> <br />
+					<label for="nome">Nome</label> 
+					<input type="text" id="nome" th:field="*{nome}" /> 
+					<br />
+					<!-- input type="submit" value="Buscar"/ -->
 					<br />
 					<h5>
 						Localizacao (UFs)
 						</h3>
+						<input id="searchEstado" type="hidden" th:field="*{estado}"/>
 						<ul style="list-style-type: none;">
-							<li><a href="#"><span>Sao Paulo(115)</span></a><br /></li>
-							<li><a href="#"><span>Rio de Janeiro(112)</span></a><br /></li>
-							<li><a href="#"><span>Pernambuco(110)</span></a><br /></li>
-							<li><a href="#"><span>Ceara(106)</span></a><br /></li>
-							<li><a href="#"><span>Parana(106)</span></a><br /></li>
-							<li><a href="#"><span>Mato Grosso(104)</span></a><br /></li>
+							<li th:each="transportadoraUF : ${transportadorasUF}">
+								<!--  a th:data2="${data}" href="#" th:onclick="'filtrarEstado(' + ${transportadoraUF[1]} + ');'"-->
+								<a th:data2="${transportadoraUF[1]}" href="#" th:onclick="filtrarEstado(this.getAttribute('data2'));">
+									<span th:text="${transportadoraUF[1]} + '(' + ${transportadoraUF[0]} + ')'"></span>
+								</a>
+								<br />
+							</li>
 						</ul>
-
 						<br /> <br />
 						<h5>
-							Localizacao (Municipios)
+							Cidades
 							</h3>
 							<ul style="list-style-type: none;">
-								<li><a href="#"><span>Sao Paulo(115)</span></a><br /></li>
-								<li><a href="#"><span>Rio de Janeiro(112)</span></a><br /></li>
-								<li><a href="#"><span>Pernambuco(110)</span></a><br /></li>
-								<li><a href="#"><span>Ceara(106)</span></a><br /></li>
-								<li><a href="#"><span>Parana(106)</span></a><br /></li>
-								<li><a href="#"><span>Mato Grosso(104)</span></a><br /></li>
+								<li th:each="transportadoraCidade : ${transportadorasCidades}">
+									<a href="#">
+										<span th:text="${transportadoraCidade[1]} + '(' + ${transportadoraCidade[0]} + ')'"></span>
+									</a>
+									<br />
+								</li>
 							</ul>
 
 							<br /> <br />
@@ -73,12 +78,15 @@
 								Modal
 								</h3>
 								<ul style="list-style-type: none;">
-									<li><a href="#"><span>Rodoviario(115)</span></a><br /></li>
-									<li><a href="#"><span>Aereo(112)</span></a><br /></li>
-									<li><a href="#"><span>Aquaviario(110)</span></a><br /></li>
+									<li th:each="transportadoraModal : ${transportadorasModais}">
+										<a href="#">
+											<span th:text="${transportadoraModal[1]} + '(' + ${transportadoraModal[0]} + ')'"></span>
+										</a>
+										<br />
+									</li>
 								</ul>
 				</div>
-
+			</form>
 			</div>
 			<div class="col-8">
 				<table class="gfg">
