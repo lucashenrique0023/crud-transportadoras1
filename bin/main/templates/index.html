@@ -34,27 +34,32 @@
 			<div class="col-4">
 			<form method="get" th:object="${transportadoraFilter}" th:action="@{/home}" id="formFilter">
 				<h3>Transportadoras</h3>
-				<span>1234 resultados</span>
+				<span th:text="${transportadoras.size()} + ' ' + resultado + '(' + s + ')'"></span>
 				<div>
-					<button type="button" class="btn btn-primary btn-sm">BRASSPRESS</button>
-					<button type="button" class="btn btn-primary btn-sm">PE</button>
-					<button type="button" class="btn btn-primary btn-sm">Recife</button>
+					<input th:if="${transportadoraFilter.cidade} != null " th:value="${transportadoraFilter.cidade}" type="button" class="btn btn-primary btn-sm"
+					onclick="filtrarCidade(null);"/>
+					<input th:if="${transportadoraFilter.estado} != null" th:value="${transportadoraFilter.estado}" type="button" class="btn btn-primary btn-sm"
+					onclick="filtrarEstado(null);"/>
+					<input th:if="${transportadoraFilter.modal} != null" th:value="${transportadoraFilter.modal}" type="button" class="btn btn-primary btn-sm"
+					onclick="filtrarModal(null);"/>
+					<input th:if="${transportadoraFilter.nome} != null" th:value="${transportadoraFilter.nome}" type="button" class="btn btn-primary btn-sm"
+					onclick="filtrarNome(null);"/>
+					
 				</div>
 				<br />
 				<div>
 					<label for="nome">Nome</label> 
-					<input type="text" id="nome" th:field="*{nome}" /> 
+					<input type="text" id="inputSearchNome" th:field="*{nome}" th:value="*{nome}" onfocusout="enviarFormulario();"/> 
 					<br />
 					<!-- input type="submit" value="Buscar"/ -->
 					<br />
 					<h5>
 						Localizacao (UFs)
 						</h3>
-						<input id="searchEstado" type="hidden" th:field="*{estado}"/>
+						<input id="inputSearchEstado" type="hidden" th:field="*{estado}"/>
 						<ul style="list-style-type: none;">
 							<li th:each="transportadoraUF : ${transportadorasUF}">
-								<!--  a th:data2="${data}" href="#" th:onclick="'filtrarEstado(' + ${transportadoraUF[1]} + ');'"-->
-								<a th:data2="${transportadoraUF[1]}" href="#" th:onclick="filtrarEstado(this.getAttribute('data2'));">
+								<a th:dataEstado="${transportadoraUF[1]}" href="#" th:onclick="filtrarEstado(this.getAttribute('dataEstado'));">
 									<span th:text="${transportadoraUF[1]} + '(' + ${transportadoraUF[0]} + ')'"></span>
 								</a>
 								<br />
@@ -64,9 +69,10 @@
 						<h5>
 							Cidades
 							</h3>
+							<input id="inputSearchCidade" type="hidden" th:field="*{cidade}"/>
 							<ul style="list-style-type: none;">
 								<li th:each="transportadoraCidade : ${transportadorasCidades}">
-									<a href="#">
+									<a th:dataCidade="${transportadoraCidade[1]}" href="#" th:onclick="filtrarCidade(this.getAttribute('dataCidade'));">
 										<span th:text="${transportadoraCidade[1]} + '(' + ${transportadoraCidade[0]} + ')'"></span>
 									</a>
 									<br />
@@ -77,9 +83,10 @@
 							<h5>
 								Modal
 								</h3>
+								<input id="inputSearchModal" type="hidden" th:field="*{modal}"/>
 								<ul style="list-style-type: none;">
 									<li th:each="transportadoraModal : ${transportadorasModais}">
-										<a href="#">
+										<a th:dataModal="${transportadoraModal[1]}" href="#" th:onclick="filtrarModal(this.getAttribute('dataModal'));">
 											<span th:text="${transportadoraModal[1]} + '(' + ${transportadoraModal[0]} + ')'"></span>
 										</a>
 										<br />

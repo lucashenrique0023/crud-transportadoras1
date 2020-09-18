@@ -50,12 +50,11 @@ public class TransportadoraController {
 					model.addAttribute("msg", "Transportadora gravada com sucesso!");
 					
 				} catch (ValidationException ex) {
-					errors.rejectValue("errors",  null, ex.getMessage());	
+					errors.rejectValue("email",  null, ex.getMessage());	
 			}	
-			
-			}
+		}
 		
 		HelperController.setEditMode(model, false);	
-		return "index";
+		return "transportadora-cadastro";
 	}
 }
