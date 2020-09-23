@@ -31,24 +31,6 @@ public class TransportadoraService {
 		return transportadoraRepository.listarTransportadoras(cidade, estado, nome, modal);
 	}
 	
-	public List<Object[]> listarTransportadorasPorCaracteristicas(TransportadoraFilter filter, String tipoListagem){
-		
-		String cidade = filter.getCidade() == "" ? null : filter.getCidade();
-		String nome = filter.getNome() == "" || filter.getNome() == null ? "%" : "%" + filter.getNome() + "%";
-		String estado = filter.getEstado() == "" ? null : filter.getEstado();
-		String modal = filter.getModal() == null ? "%" : filter.getModal().toString();
-		
-		if (tipoListagem == "estado") {
-			return transportadoraRepository.listarTransportadorasUF(cidade, estado, nome, modal);
-		} else if (tipoListagem == "cidades") {
-			return transportadoraRepository.listarTransportadorasCidades(cidade, estado, nome, modal);
-		} else if (tipoListagem == "modais") {
-			return transportadoraRepository.listarTransportadorasModais(cidade, estado, nome, modal);
-		}
-		
-		return null;
-	}
-	
 
 	@Transactional
 	public void saveTransportadora(Transportadora transportadora) {

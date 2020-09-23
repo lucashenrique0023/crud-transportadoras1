@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import br.com.lucaslab.transportadoras.application.service.TransportadoraService;
 import br.com.lucaslab.transportadoras.domain.transportadoras.ContadorTransportadora;
-import br.com.lucaslab.transportadoras.domain.transportadoras.FachadaContadorTransportadora;
 import br.com.lucaslab.transportadoras.domain.transportadoras.RetornoFiltroTransportadora;
 import br.com.lucaslab.transportadoras.domain.transportadoras.Transportadora;
 import br.com.lucaslab.transportadoras.domain.transportadoras.TransportadoraFilter;
@@ -22,14 +21,15 @@ public class HomeController {
 	private TransportadoraService transportadoraService;
 	
 	@Autowired
-	private FachadaContadorTransportadora fachadaContadorTransportadora;
+	private List<ContadorTransportadora> contadorTransportadora;
 
 	@GetMapping(path = { "/" , "/home" })
 	public String home(@ModelAttribute("transportadoraFilter") TransportadoraFilter filter,
 			Model model) {
 		
 		List<Transportadora> transportadoras = transportadoraService.listarTransportadoras(filter);
-		fachadaContadorTransportadora.getItens().forEach((ContadorTransportadora i) -> {
+		
+		contadorTransportadora.forEach((ContadorTransportadora i) -> {
 			RetornoFiltroTransportadora retorno = i.processar(transportadoras);
 			model.addAttribute(retorno.getNome(), retorno.getItens());
 		}); 

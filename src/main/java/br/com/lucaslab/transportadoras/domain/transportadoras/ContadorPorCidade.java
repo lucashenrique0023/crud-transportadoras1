@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import br.com.lucaslab.transportadoras.domain.transportadoras.RetornoFiltroTransportadora.Item;
 
+@Component
 public class ContadorPorCidade implements ContadorTransportadora {
 	
 	private static final String NOME_CONTADOR = "transportadorasCidades";
