@@ -25,7 +25,7 @@ public class InsertDataForTesting {
 		Environment env = event.getApplicationContext().getEnvironment();
 		
 		// So popula se o profile for diferente de test.
-		//if (!env.acceptsProfiles(Profiles.of("test"))) {
+		if (!env.acceptsProfiles(Profiles.of("test"))) {
 			
 			Transportadora t = new Transportadora();
 			
@@ -118,7 +118,7 @@ public class InsertDataForTesting {
 			
 			transportadoraRepository.save(t);
 			
-		//}	
+		}	
 	}
 
 }
