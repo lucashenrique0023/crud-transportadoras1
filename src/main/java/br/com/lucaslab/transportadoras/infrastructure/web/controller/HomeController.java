@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import br.com.lucaslab.transportadoras.application.service.TransportadoraService;
+import br.com.lucaslab.transportadoras.domain.transportadoras.ContadorTransportadora;
+import br.com.lucaslab.transportadoras.domain.transportadoras.FachadaContadorTransportadora;
+import br.com.lucaslab.transportadoras.domain.transportadoras.RetornoFiltroTransportadora;
 import br.com.lucaslab.transportadoras.domain.transportadoras.Transportadora;
 import br.com.lucaslab.transportadoras.domain.transportadoras.TransportadoraFilter;
 
@@ -17,24 +20,21 @@ public class HomeController {
 	
 	@Autowired
 	private TransportadoraService transportadoraService;
+	
+	@Autowired
+	private FachadaContadorTransportadora fachadaContadorTransportadora;
 
 	@GetMapping(path = { "/" , "/home" })
 	public String home(@ModelAttribute("transportadoraFilter") TransportadoraFilter filter,
 			Model model) {
 		
 		List<Transportadora> transportadoras = transportadoraService.listarTransportadoras(filter);
+		fachadaContadorTransportadora.getItens().forEach((ContadorTransportadora i) -> {
+			RetornoFiltroTransportadora retorno = i.processar(transportadoras);
+			model.addAttribute(retorno.getNome(), retorno.getItens());
+		}); 
 		
-		// TODO: Reutilizar lista transportadoras para filtrar ?
-		
-		List<Object[]> transportadorasUF = transportadoraService.listarTransportadorasPorCaracteristicas(filter, "estado");
-		List<Object[]> transportadorasCidades = transportadoraService.listarTransportadorasPorCaracteristicas(filter, "cidades");
-		List<Object[]> transportadorasModais = transportadoraService.listarTransportadorasPorCaracteristicas(filter, "modais");
-		
-		model.addAttribute("transportadoraFilter", filter);
 		model.addAttribute("transportadoras", transportadoras);
-		model.addAttribute("transportadorasUF", transportadorasUF);
-		model.addAttribute("transportadorasCidades", transportadorasCidades);
-		model.addAttribute("transportadorasModais", transportadorasModais);
 		
 		return "index";
 	}

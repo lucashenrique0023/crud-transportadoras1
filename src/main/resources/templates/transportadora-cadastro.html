@@ -217,6 +217,12 @@
 	  <div class="form-group row text-center">
 	    <div class="col-sm-12">
 	      <input type="submit" class="btn btn-primary" th:value="${!editMode} ? 'Cadastrar-se Agora!' : 'Alterar'"></button>
+	      
+	      <div th:if="${editMode}" style='display: inline;'>
+	      	<input type="button" class="btn btn-danger" value='Deletar' th:onclick="'location.href=\'' + @{/transportadora/deletar} + '?transportadoraId=' + ${transportadora.id} + '\';'"></button>
+	      </div> 
+	      
+	      <input type="button" class="btn btn-success" value='Voltar' th:onclick="'location.href=\'' + @{/home} + '\';'"></button>
 	    </div>
 	  </div>
 	</form>

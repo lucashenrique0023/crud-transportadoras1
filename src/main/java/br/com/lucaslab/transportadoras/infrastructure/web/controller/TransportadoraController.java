@@ -57,4 +57,13 @@ public class TransportadoraController {
 		HelperController.setEditMode(model, false);	
 		return "transportadora-cadastro";
 	}
+	
+	@GetMapping(path = "/deletar")
+	public String delete(Model model,
+			@RequestParam("transportadoraId") Integer transportadoraId) {
+		
+			transportadoraRepository.deleteById(transportadoraId);
+			
+		return "redirect:/home";
+	}
 }

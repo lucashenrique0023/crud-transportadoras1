@@ -6,7 +6,7 @@ plugins {
 
 group = 'br.com.lucaslab.transportadoras'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '12'
 
 configurations {
 	compileOnly {
@@ -34,6 +34,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntime 'com.h2database:h2'
 }
 
 test {
